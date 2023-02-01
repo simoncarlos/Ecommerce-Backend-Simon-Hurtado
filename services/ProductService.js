@@ -1,4 +1,5 @@
 import { Product } from "../models/Product.js"
+import Id from "../models/Id.js"
 
 export class Products{
     #productList
@@ -14,11 +15,12 @@ export class Products{
         return product.dto()
     }
     async addProduct( product ){
-        const productInstance = new Product( product )
+        const id = Id.crearId()
+        const productInstance = new Product({ id, ...product })
         await this.#productList.add( productInstance )
     }
-    async updateProduct( product ){
-        const productInstance = new Product( product )
+    async updateProduct(id, product ){
+        const productInstance = new Product({ id, ...product })
         await this.#productList.updateById( productInstance )
     }
     async deleteProduct( idProduct ){

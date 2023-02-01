@@ -9,6 +9,7 @@
   "author": "Carlos Diego Simon Hurtado",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.18.2"
   }
 }

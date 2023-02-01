@@ -7,11 +7,11 @@ export class Product {
     #image
     #price
     constructor({id, name, description, image, price}){
-        this.#id = requiredField( id, arguments[0].id, "Product" )// verificar que sea numerico
-        this.#name = requiredField( name, arguments[0].name, "Product" )
-        this.#description =  requiredField( description, arguments[0].description, "Product" )
-        this.#image =  requiredField( image, arguments[0].image, "Product" )
-        this.#price = requiredField( price, arguments[0].price, "Product" )
+        this.#id = requiredField( id, "id", "Product" )
+        this.#name = requiredField( name, "name", "Product" )
+        this.#description =  requiredField( description, "description", "Product" )
+        this.#image =  requiredField( image, "image", "Product" )
+        this.#price = requiredField( price, "price", "Product" )
     }
     dto(){
         return {
