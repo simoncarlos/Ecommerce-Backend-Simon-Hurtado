@@ -24,7 +24,8 @@ export class ProductList{
     async deleteById( idProduct ){
         await this.#productDao.deleteObject( idProduct )
     }
-    async verifyExistence( field, value ){
-        return await this.getProductByField(field, value)
+    async getProductsByIds( values ){//getProductsAtCart
+        const productsDto = await this.#productDao.getObjects()
+        return productsDto.map( dto => values.includes(dto.id) && new Product(dto) )
     }
 }

@@ -3,8 +3,9 @@ import { Cart } from "../models/Cart.js"
 export class Carts{
     #cartList
     #productList
-    constructor(cartList){
+    constructor(cartList, productList){
         this.#cartList = cartList
+        this.#productList = productList
     }
     async createCart( idClient ){
         const cartInstance = new Cart({ id: idClient, products: [] })
@@ -14,17 +15,17 @@ export class Carts{
         await this.#cartList.empty( idClient )
     }
     async addProductAtCart( idClient, idProduct ){
-        const productInstance = await this.#productList.verifyExistence( "id", idProduct )
-        //const productId = productInstance.dto().id
-        const cartInstance = await this.#cartList.verifyExistenceProductInCart(idClient, idProduct) 
-        // carrito con id y products
-        if( cartInstance ){
-            const cartDto = cartInstance.dto().products // se puede hacer un map
-
-        }
-        // verificamos si existe o no en el carrito
-        // si existe se incrementa su cantidad
-        // sino se agrega normalmente con cantidad 1
-
+        await this.#productList.getProductByField( "id", idProduct ) // verificacion de existencia de producto
+        await this.#cartList.addProduct( idClient, idProduct ) 
+    }
+    async getProductsAtCart( idClient ){
+        const cart = await this.#cartList.getCart( idClient )
+        const productsIds = cart.dto().products.map( product => product.id )
+        const products = await this.#productList.getProductsByIds( productsIds )
+        return products.map( product => product.dto() )
+    }
+    async deleteProduct( idClient, idProduct ){
+        await this.#productList.getProductByField( "id", idProduct ) // verificacion de existencia de producto
+        await this.#cartList.deleteProduct( idClient, idProduct )
     }
 }
