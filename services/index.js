@@ -3,4 +3,4 @@ import { Carts } from "./CartService.js";
 import { Products } from "./ProductService.js";
 
 export const productManager = new Products( productList )
-export const cartManager = new Carts( cartList )
+export const cartManager = new Carts( cartList, productList )

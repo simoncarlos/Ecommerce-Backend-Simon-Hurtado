@@ -1,4 +1,4 @@
-export function requiredField( field, name, className ){
-    if(!field) throw new Error(`Se requiere el campo '${name}' para instanciar la clase ${className}`)
+export function requiredField( field ){
+    if(!field) throw new Error("MISSING_REQUIRED_PARAM")
     return field
 }

@@ -17,7 +17,7 @@ export class ProductList{
         const productDto = product.dto()
         await this.#productDao.saveObject( productDto )
     }
-    async updateById( product ){// recibe por parametro una instancia de la clase Producto
+    async update( product ){// recibe por parametro una instancia de la clase Producto
         const productDto = product.dto() // objeto de producto con id incluido
         await this.#productDao.updateObject( productDto )
     }

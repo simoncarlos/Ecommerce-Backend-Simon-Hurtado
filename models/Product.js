@@ -7,15 +7,15 @@ export class Product {
     #image
     #price
     constructor({id, name, description, image, price}){
-        this.#id = requiredField( id, "id", "Product" )
-        this.#name = requiredField( name, "name", "Product" )
-        this.#description =  requiredField( description, "description", "Product" )
-        this.#image =  requiredField( image, "image", "Product" )
-        this.#price = requiredField( price, "price", "Product" )
+        this.#id = requiredField( id )
+        this.#name = requiredField( name )
+        this.#description = requiredField( description )
+        this.#image =  requiredField( image)
+        this.#price = requiredField( price )
     }
     dto(){
         return {
-            id: this.#id,// generar el random
+            id: this.#id,
             name: this.#name,
             description: this.#description,
             image: this.#image,

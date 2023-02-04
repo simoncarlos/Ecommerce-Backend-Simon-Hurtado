@@ -18,10 +18,11 @@ export class Products{
         const id = Id.crearId()
         const productInstance = new Product({ id, ...product })
         await this.#productList.add( productInstance )
+        return id
     }
-    async updateProduct(id, product ){
-        const productInstance = new Product({ id, ...product })
-        await this.#productList.updateById( productInstance )
+    async updateProduct( product ){
+        const productInstance = new Product( product )
+        await this.#productList.update( productInstance )
     }
     async deleteProduct( idProduct ){
         await this.#productList.deleteById( idProduct )
