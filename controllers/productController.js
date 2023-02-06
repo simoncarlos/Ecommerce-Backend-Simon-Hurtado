@@ -20,8 +20,8 @@ export const listProductByIdController = async ( req, res, next ) => {
 
 export const addProductController = async ( req, res, next ) => {
     try{
-        const newId = await productManager.addProduct( req.body )
-        res.status(201).json( { id: newId, ...req.body } )
+        const id = await productManager.addProduct( req.body )
+        res.status(201).json( { id, ...req.body } )
     } catch(error) {
         next(error)
     }
@@ -41,7 +41,7 @@ export const deleteProductController = async ( req, res, next ) => {
     try{
         await productManager.deleteProduct( req.params.id_product )
         const productList = await productManager.getProducts()
-        res.status(200).json(productList)
+        res.json(productList)
     } catch(error) {
         next(error)
     }

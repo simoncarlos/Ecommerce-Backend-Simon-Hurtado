@@ -7,8 +7,9 @@ export class Carts{
         this.#cartList = cartList
         this.#productList = productList
     }
-    async createCart( idClient ){
+    async createCart( idClient ){ // not use
         const cartInstance = new Cart({ id: idClient, products: [] })
+        console.log("Carrito creado exitosamente")
         return await this.#cartList.create( cartInstance )
     }
     async emptyCart( idClient ){
